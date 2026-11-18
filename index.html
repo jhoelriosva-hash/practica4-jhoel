@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avícola El Pollo Feliz - Tienda Oficial E-Commerce</title>
+    <!-- Enlace a la hoja de estilos externa requerida (Requerimiento 3) -->
+    <link rel="stylesheet" href="estilosPrueba.css">
+    <!-- Script para renderizar modelos 3D (.glb / .gltf) -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <!-- Datos de modelos 3D integrados para visualización offline y compatibilidad total con file:/// -->
+    <script src="modelos/modelos_data.js"></script>
+    <!-- Datos del modelo FBX para visualización offline y compatibilidad total -->
+    <script src="imagenes/silly_dancing_data.js"></script>
+    <!-- Three.js e Importmap para renderizado y animación del modelo FBX -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
+</head>
+
+<body>
+
+    <!-- ========================================================
+         BANNER PRINCIPAL DEL E-COMMERCE
+         Fondo: #1e293b | Color: #ffffff | Alineado al centro | Segoe UI
+         Incluye Logo oficial y Animación 3D FBX interactiva al lado
+         ======================================================== -->
+    <header class="banner-principal">
+        <div class="banner-branding">
+            <img src="imagenes/00d3ceb9-f4c3-409a-920b-4a2d7e0e7be2.jpg" alt="Logo Avícola El Pollo Feliz" class="logo-empresa">
+            <div class="banner-animacion-fbx" title="Personaje 3D Animado (Silly Dancing FBX)">
+                <canvas id="canvas-banner-fbx" class="canvas-banner-avatar"></canvas>
+                <span class="badge-banner-3d">Animación 3D FBX</span>
+            </div>
+        </div>
+        <h1 class="titulo-banner">Avícola "El Pollo Feliz"</h1>
+        <p class="subtitulo-banner">Distribución mayorista y minorista de productos avícolas frescos de la más alta calidad</p>
+    </header>
+
+    <!-- ========================================================
+         REQUERIMIENTO 2: <NAV> MENÚ DE NAVEGACIÓN Y CATEGORÍAS
+         Pestañas: Inicio, Productos (5 productos), Servicios,
+         Contacto y Prueba (3 productos + mascota virtual FBX 3D).
+         ======================================================== -->
+    <nav class="navegacion-principal">
+        <ul class="lista-navegacion">
+            <li class="item-nav"><a href="#inicio" id="btn-inicio" class="nav-enlace activo" onclick="cambiarSeccion('inicio', event)">Inicio</a></li>
+            <li class="item-nav"><a href="#productos" id="btn-productos" class="nav-enlace" onclick="cambiarSeccion('productos', event)">Productos</a></li>
+            <li class="item-nav"><a href="#servicios" id="btn-servicios" class="nav-enlace" onclick="cambiarSeccion('servicios', event)">Servicios</a></li>
+            <li class="item-nav"><a href="#contacto" id="btn-contacto" class="nav-enlace" onclick="cambiarSeccion('contacto', event)">Contacto</a></li>
+            <li class="item-nav"><a href="#prueba" id="btn-prueba" class="nav-enlace tab-prueba" onclick="cambiarSeccion('prueba', event)">Prueba</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========================================================
+         SECCIÓN: INICIO (MISIÓN, UBICACIÓN Y MAPA INTERACTIVO)
+         ======================================================== -->
+    <section class="seccion-secundaria" id="seccion-inicio">
+        <h2>Misión del negocio</h2>
+        <p>Brindar la mejor distribución de huevos frescos y carne de pollo con excelente calidad y precios justos.</p>
+        <img src="imagenes/images (1).jpg" alt="Galpón y Producción Avícola" class="img-contenido">
+
+        <h2>Ubicación del local</h2>
+        <p>Nos encontramos en Quito, sector Avenida Río Amazonas, listos para atender tus pedidos al por mayor y menor.</p>
+        <img src="imagenes/pollo.jpg" alt="Instalaciones de la Avícola" class="img-contenido">
+
+        <div class="contenedor-mapa">
+            <iframe 
+                src="https://maps.google.com/maps?q=Av.+R%C3%ADo+Amazonas,+Quito,+Ecuador&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                title="Mapa de ubicación Avícola El Pollo Feliz" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <p class="mapa-enlace-texto">
+            📍 <a href="https://maps.google.com/?cid=203648817747889959" target="_blank" class="enlace-mapa">
+                Ver nuestra ubicación exacta en la Av. Río Amazonas (Google Maps / My Maps)
+            </a>
+        </p>
+
+        <aside class="aside-info-empresa">
+            <h3>Más sobre nosotros</h3>
+            <p><a href="https://ec.linkedin.com/" target="_blank" class="enlace-secundario">Ver más información en LinkedIn</a></p>
+            <a href="https://github.com/" target="_blank" class="enlace-github" title="GitHub">
+                <img src="imagenes/GITHUB.jpg" alt="GitHub" class="icono-github">
+            </a>
+        </aside>
+    </section>
+
+    <!-- ========================================================
+         SECCIÓN: PRODUCTOS (LOS 5 PRODUCTOS COMPLETOS)
+         Se activa al pulsar la pestaña "Productos".
+         Contiene los 5 productos con sus modelos 3D y especificaciones.
+         ======================================================== -->
+    <div class="contenedor-principal oculto" id="seccion-productos">
+        <main class="catalogo-productos" id="catalogo-completo">
+
+            <header class="catalogo-encabezado">
+                <div class="banner-prueba-info">
+                    <span class="badge-prueba">📦 Catálogo Oficial de Productos</span>
+                    <h2 class="titulo-catalogo">Catálogo Completo de Productos Avícolas (5 Productos)</h2>
+                    <p class="subtitulo-catalogo">Selección fresca de la granja con modelos 3D interactivos, descripción detallada y precios al por mayor y menor.</p>
+                </div>
+
+                <!-- Filtros de Categorías para Productos -->
+                <div class="barra-filtros-categorias">
+                    <span class="etiqueta-filtros">Categorías:</span>
+                    <button type="button" class="btn-filtro-cat activo" onclick="filtrarCategoria('todas', this, 'seccion-productos')">Todas</button>
+                    <button type="button" class="btn-filtro-cat" onclick="filtrarCategoria('pollos', this, 'seccion-productos')">Pollos Enteros</button>
+                    <button type="button" class="btn-filtro-cat" onclick="filtrarCategoria('cortes', this, 'seccion-productos')">Cortes Especiales</button>
+                    <button type="button" class="btn-filtro-cat" onclick="filtrarCategoria('huevos', this, 'seccion-productos')">Huevos de Granja</button>
+                </div>
+
+                <!-- Selector de Modelos 3D (Granja vs Demostrativos) -->
+                <section class="selector-modelos-container">
+                    <span class="selector-etiqueta">Modelos 3D:</span>
+                    <button type="button" class="btn-tab-modelo btn-granja activo" onclick="alternarModoCatalogo('granja')">
+                        🐔 Granja (Nuevos)
+                    </button>
+                    <button type="button" class="btn-tab-modelo btn-demo" onclick="alternarModoCatalogo('demo')">
+                        🌐 Demostrativos
+                    </button>
+                </section>
+            </header>
+
+            <!-- Layout fluido Flexbox con los 5 productos -->
+            <div class="contenedor-flex-productos">
+
+                <!-- PRODUCTO 1: Pollo Entero Fresco -->
+                <article class="card-producto" id="art-prod-pollo" data-categoria="pollos">
+                    <header class="card-header">
+                        <span class="badge-3d">✨ Avícola 3D</span>
+                        <h3 class="nombre-producto">Pollo Entero Fresco</h3>
+                    </header>
+
+                    <figure class="figura-producto-3d">
+                        <model-viewer 
+                            id="mv-prod-pollo" 
+                            class="visor-3d"
+                            data-clave="pollo_entero"
+                            src="modelos/pollo_entero.glb" 
+                            alt="Modelo 3D interactivo Pollo Entero Fresco" 
+                            auto-rotate 
+                            camera-controls 
+                            shadow-intensity="1.2" 
+                            exposure="1.0"
+                            ar>
+                        </model-viewer>
+                        <figcaption class="instruccion-3d">🖱️ Arrastra para girar en 3D | Rueda para zoom</figcaption>
+                    </figure>
+
+                    <p class="acciones-3d">
+                        <button type="button" class="btn-control-3d" onclick="centrarCamara('mv-prod-pollo')">🔄 Centrar</button>
+                        <button type="button" class="btn-control-3d" onclick="toggleRotacion('mv-prod-pollo', this)">⏸️ Pausar</button>
+                    </p>
+
+                    <p class="descripcion-producto">
+                        Pollo fresco de granja seleccionado bajo rigurosos controles de calidad e higiene alimentaria, listo para su distribución.
+                    </p>
+
+                    <section class="precios-producto">
+                        <p class="precio-unitario">
+                            <span class="etiqueta-precio">Precio unitario:</span>
+                            <strong class="valor-precio">$6.50</strong>
+                        </p>
+                        <p class="precio-mayor">
+                            <span class="etiqueta-precio">Precio al por mayor:</span>
+                            <strong class="valor-precio">$5.20</strong>
+                            <small class="nota-mayor">(a partir de 10 unidades)</small>
+                        </p>
+                    </section>
+                </article>
+
+                <!-- PRODUCTO 2: Cubeta de Huevos (30 Unidades) -->
+                <article class="card-producto" id="art-prod-huevos" data-categoria="huevos">
+                    <header class="card-header">
+                        <span class="badge-3d">✨ Avícola 3D</span>
+                        <h3 class="nombre-producto">Cubeta de Huevos (30 Unidades)</h3>
+                    </header>
+
+                    <figure class="figura-producto-3d">
+                        <model-viewer 
+                            id="mv-prod-huevos" 
+                            class="visor-3d"
+                            data-clave="cubeta_huevos"
+                            src="modelos/cubeta_huevos.glb" 
+                            alt="Modelo 3D interactivo Cubeta de Huevos" 
+                            auto-rotate 
+                            camera-controls 
+                            shadow-intensity="1.2" 
+                            exposure="1.0"
+                            ar>
+                        </model-viewer>
+                        <figcaption class="instruccion-3d">🖱️ Arrastra para girar en 3D | Rueda para zoom</figcaption>
+                    </figure>
+
+                    <p class="acciones-3d">
+                        <button type="button" class="btn-control-3d" onclick="centrarCamara('mv-prod-huevos')">🔄 Centrar</button>
+                        <button type="button" class="btn-control-3d" onclick="toggleRotacion('mv-prod-huevos', this)">⏸️ Pausar</button>
+                    </p>
+
+                    <p class="descripcion-producto">
+                        Cubeta de 30 huevos seleccionados de gallinas ponedoras de campo, grado A con máxima frescura y cáscara reforzada.
+                    </p>
+
+                    <section class="precios-producto">
+                        <p class="precio-unitario">
+                            <span class="etiqueta-precio">Precio unitario:</span>
+                            <strong class="valor-precio">$4.20</strong>
+                        </p>
+                        <p class="precio-mayor">
+                            <span class="etiqueta-precio">Precio al por mayor:</span>
+                            <strong class="valor-precio">$3.50</strong>
+                            <small class="nota-mayor">(a partir de 5 cubetas)</small>
+                        </p>
+                    </section>
+                </article>
+
+                <!-- PRODUCTO 3: Muslos de Pollo Especiales -->
+                <article class="card-producto" id="art-prod-muslos" data-categoria="cortes">
+                    <header class="card-header">
+                        <span class="badge-3d">✨ Avícola 3D</span>
+                        <h3 class="nombre-producto">Muslos de Pollo Especiales</h3>
+                    </header>
+
+                    <figure class="figura-producto-3d">
+                        <model-viewer 
+                            id="mv-prod-muslos" 
+                            class="visor-3d"
+                            data-clave="muslos_pollo"
+                            src="modelos/muslos_pollo.glb" 
+                            alt="Modelo 3D interactivo Muslos de Pollo Especiales" 
+                            auto-rotate 
+                            camera-controls 
+                            shadow-intensity="1.2" 
+                            exposure="1.0"
+                            ar>
+                        </model-viewer>
+                        <figcaption class="instruccion-3d">🖱️ Arrastra para girar en 3D | Rueda para zoom</figcaption>
+                    </figure>
+
+                    <p class="acciones-3d">
+                        <button type="button" class="btn-control-3d" onclick="centrarCamara('mv-prod-muslos')">🔄 Centrar</button>
+                        <button type="button" class="btn-control-3d" onclick="toggleRotacion('mv-prod-muslos', this)">⏸️ Pausar</button>
+                    </p>
+
+                    <p class="descripcion-producto">
+                        Cortes jugosos y carnosos ideales para asados, caldos y guisos, limpios, fraccionados y empacados con sellado al vacío.
+                    </p>
+
+                    <section class="precios-producto">
+                        <p class="precio-unitario">
+                            <span class="etiqueta-precio">Precio unitario:</span>
+                            <strong class="valor-precio">$3.80 / kg</strong>
+                        </p>
+                        <p class="precio-mayor">
+                            <span class="etiqueta-precio">Precio al por mayor:</span>
+                            <strong class="valor-precio">$3.10 / kg</strong>
+                            <small class="nota-mayor">(a partir de 15 kg)</small>
+                        </p>
+                    </section>
+                </article>
+
+                <!-- PRODUCTO 4: Pechuga Especial Deshuesada -->
+                <article class="card-producto" id="art-prod-pechuga" data-categoria="cortes">
+                    <header class="card-header">
+                        <span class="badge-3d">✨ Avícola 3D</span>
+                        <h3 class="nombre-producto">Pechuga Especial Deshuesada</h3>
+                    </header>
+
+                    <figure class="figura-producto-3d">
+                        <model-viewer 
+                            id="mv-prod-pechuga" 
+                            class="visor-3d"
+                            data-clave="pechuga"
+                            src="modelos/pechuga.glb" 
+                            alt="Modelo 3D interactivo Pechuga Especial Deshuesada" 
+                            auto-rotate 
+                            camera-controls 
+                            shadow-intensity="1.2" 
+                            exposure="1.0"
+                            ar>
+                        </model-viewer>
+                        <figcaption class="instruccion-3d">🖱️ Arrastra para girar en 3D | Rueda para zoom</figcaption>
+                    </figure>
+
+                    <p class="acciones-3d">
+                        <button type="button" class="btn-control-3d" onclick="centrarCamara('mv-prod-pechuga')">🔄 Centrar</button>
+                        <button type="button" class="btn-control-3d" onclick="toggleRotacion('mv-prod-pechuga', this)">⏸️ Pausar</button>
+                    </p>
+
+                    <p class="descripcion-producto">
+                        Pechuga de pollo fresca y tierna, libre de conservantes y hormonas, de alto contenido proteico e ideal para dietas saludables.
+                    </p>
+
+                    <section class="precios-producto">
+                        <p class="precio-unitario">
+                            <span class="etiqueta-precio">Precio unitario:</span>
+                            <strong class="valor-precio">$4.50 / kg</strong>
+                        </p>
+                        <p class="precio-mayor">
+                            <span class="etiqueta-precio">Precio al por mayor:</span>
+                            <strong class="valor-precio">$3.75 / kg</strong>
+                            <small class="nota-mayor">(a partir de 15 kg)</small>
+                        </p>
+                    </section>
+                </article>
+
+                <!-- PRODUCTO 5: Alitas de Pollo Tiernas -->
+                <article class="card-producto" id="art-prod-alitas" data-categoria="cortes">
+                    <header class="card-header">
+                        <span class="badge-3d">✨ Avícola 3D</span>
+                        <h3 class="nombre-producto">Alitas de Pollo Tiernas</h3>
+                    </header>
+
+                    <figure class="figura-producto-3d">
+                        <model-viewer 
+                            id="mv-prod-alitas" 
+                            class="visor-3d"
+                            data-clave="alitas"
+                            src="modelos/alitas.glb" 
+                            alt="Modelo 3D interactivo Alitas de Pollo Tiernas" 
+                            auto-rotate 
+                            camera-controls 
+                            shadow-intensity="1.2" 
+                            exposure="1.0"
+                            ar>
+                        </model-viewer>
+                        <figcaption class="instruccion-3d">🖱️ Arrastra para girar en 3D | Rueda para zoom</figcaption>
+                    </figure>
+
+                    <p class="acciones-3d">
+                        <button type="button" class="btn-control-3d" onclick="centrarCamara('mv-prod-alitas')">🔄 Centrar</button>
+                        <button type="button" class="btn-control-3d" onclick="toggleRotacion('mv-prod-alitas', this)">⏸️ Pausar</button>
+                    </p>
+
+                    <p class="descripcion-producto">
+                        Alitas tiernas seleccionadas y fraccionadas, perfectas para aperitivos, asados crujientes, eventos sociales y restaurantes.
+                    </p>
+
+                    <section class="precios-producto">
+                        <p class="precio-unitario">
+                            <span class="etiqueta-precio">Precio unitario:</span>
+                            <strong class="valor-precio">$3.90 / kg</strong>
+                        </p>
+                        <p class="precio-mayor">
+                            <span class="etiqueta-precio">Precio al por mayor:</span>
+                            <strong class="valor-precio">$3.20 / kg</strong>
+                            <small class="nota-mayor">(a partir de 15 kg)</small>
+                        </p>
+                    </section>
+                </article>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================================
+         SECCIÓN: PRUEBA (3 PRODUCTOS + MASCOTA VIRTUAL FBX 3D)
+         Refactorización Semántica W3C/WHATWG (Requerimientos 2 y 3).
+         Se despliega inmediatamente al pulsar "Prueba".
+         Mascota Virtual FBX en el medio de la pantalla arriba.
+         ======================================================== -->
+    <div class="contenedor-principal oculto" id="seccion-prueba">
+
+        <!-- ========================================================
+             REQUERIMIENTO 2: <ASIDE> MASCOTA VIRTUAL CON MOVIMIENTO 3D
+             (Modelo FBX con animación Silly Dancing, ubicado en el centro arriba)
+             ======================================================== -->
+        <aside class="mascota-virtual">
+            <header class="mascota-encabezado">
+                <span class="badge-mascota">⭐ Mascota Virtual Interactiva</span>
+                <h3 class="titulo-mascota">Pío Elvis 3D (Animación FBX)</h3>
+                <p class="mascota-saludo">¡Hola! Soy la mascota interactiva con movimiento 3D de Avícola El Pollo Feliz. Modelo en formato FBX con animación de baile "Silly Dancing". ¡Rota mi modelo en 360° y acompáñame a explorar!</p>
+            </header>
+
+            <figure class="figura-mascota-3d">
+                <div class="contenedor-canvas-fbx">
+                    <canvas id="canvas-mascota-fbx" class="visor-fbx-3d"></canvas>
+                </div>
+                <figcaption class="instruccion-3d">🕺 Modelo FBX interactivo | Arrastra para rotar en 360° | Rueda para zoom</figcaption>
+            </figure>
+
+            <p class="acciones-3d">
+                <button type="button" id="btn-toggle-baile" class="btn-control-3d" onclick="toggleBaileFBX()">⏸️ Pausar Baile</button>
+                <button type="button" class="btn-control-3d" onclick="centrarMascotaFBX()">🔄 Centrar Cámara</button>
+            </p>
+
+            <section class="mascota-enlaces">
+                <h4 class="subtitulo-aside">Más sobre nosotros</h4>
+                <p class="texto-aside">
+                    <a href="https://ec.linkedin.com/" target="_blank" class="enlace-secundario">Ver perfil en LinkedIn</a>
+                </p>
+                <a href="https://github.com/" target="_blank" class="enlace-github" title="Repositorio en GitHub">
+                    <img src="imagenes/GITHUB.jpg" alt="Icono de GitHub" class="icono-github">
+                </a>
+            </section>
+        </aside>
+
+        <!-- ========================================================
+             REQUERIMIENTO 2: <MAIN> ENCAPSULA EL CATÁLOGO ÚNICO (3 PRODUCTOS)
+             ======================================================== -->
+        <main class="catalogo-productos" id="catalogo">
+
+            <header class="catalogo-encabezado">
+                <div class="banner-prueba-info">
+                    <span class="badge-prueba">📌 Vista Desplegada: Módulo de Prueba Semántico</span>
+                    <h2 class="titulo-catalogo">Catálogo Exclusivo de Prueba (3 Productos)</h2>
+                    <p class="subtitulo-catalogo">Componentes W3C/WHATWG con modelos 3D GLB interactivos, descripciones completas y precios unitarios y al por mayor.</p>
+                    <p class="parrafo-enlace-jsp">
+                        Enlace requerido para el sistema: <a href="prueba.jsp" class="enlace-jsp-server">prueba.jsp</a>
+                    </p>
+                </div>
+
+                <!-- Filtros de Categorías de Prueba -->
+                <div class="barra-filtros-categorias">
+                    <span class="etiqueta-filtros">Categorías:</span>
+                    <button type="button" class="btn-filtro-cat activo" onclick="filtrarCategoria('todas', this, 'seccion-prueba')">Todas</button>
+                    <button type="button" class="btn-filtro-cat" onclick="filtrarCategoria('piernas', this, 'seccion-prueba')">Pierna de Pollo</button>
+                    <button type="button" class="btn-filtro-cat" onclick="filtrarCategoria('huevos', this, 'seccion-prueba')">Huevos de Granja</button>
+                    <button type="button" class="btn-filtro-cat" onclick="filtrarCategoria('alitas', this, 'seccion-prueba')">Alitas de Pollo</button>
+                </div>
+
+                <!-- Selector de Modelos 3D (Granja vs Demostrativos) -->
+                <section class="selector-modelos-container">
+                    <span class="selector-etiqueta">Modelos 3D:</span>
+                    <button type="button" class="btn-tab-modelo btn-granja activo" onclick="alternarModoCatalogo('granja')">
+                        🐔 Granja (Nuevos)
+                    </button>
+                    <button type="button" class="btn-tab-modelo btn-demo" onclick="alternarModoCatalogo('demo')">
+                        🌐 Demostrativos
+                    </button>
+                </section>
+            </header>
+
+            <!-- Requerimiento 3: Layout fluido unidimensional Flexbox de 3 tarjetas -->
+            <div class="contenedor-flex-productos">
+
+                <!-- PRODUCTO 1 DE PRUEBA: Pierna de Pollo Fresca -->
+                <article class="card-producto" id="art-pierna" data-categoria="piernas">
+                    <header class="card-header">
+                        <span class="badge-3d">✨ Avícola 3D</span>
+                        <h3 class="nombre-producto">Pierna de Pollo Fresca</h3>
+                    </header>
+
+                    <figure class="figura-producto-3d">
+                        <model-viewer 
+                            id="mv-pierna" 
+                            class="visor-3d"
+                            data-clave="muslos_pollo"
+                            src="modelos/muslos_pollo.glb" 
+                            alt="Modelo 3D interactivo Pierna de Pollo Fresca" 
+                            auto-rotate 
+                            camera-controls 
+                            shadow-intensity="1.2" 
+                            exposure="1.0"
+                            ar>
+                        </model-viewer>
+                        <figcaption class="instruccion-3d">🖱️ Arrastra para girar en 3D | Rueda para zoom</figcaption>
+                    </figure>
+
+                    <p class="acciones-3d">
+                        <button type="button" class="btn-control-3d" onclick="centrarCamara('mv-pierna')">🔄 Centrar</button>
+                        <button type="button" class="btn-control-3d" onclick="toggleRotacion('mv-pierna', this)">⏸️ Pausar</button>
+                    </p>
+
+                    <p class="descripcion-producto">
+                        Piernas de pollo frescas y carnosas seleccionadas de granja, listas para asados, caldos y guisos familiares.
+                    </p>
+
+                    <section class="precios-producto">
+                        <p class="precio-unitario">
+                            <span class="etiqueta-precio">Precio unitario:</span>
+                            <strong class="valor-precio">$3.80 / kg</strong>
+                        </p>
+                        <p class="precio-mayor">
+                            <span class="etiqueta-precio">Precio al por mayor:</span>
+                            <strong class="valor-precio">$3.10 / kg</strong>
+                            <small class="nota-mayor">(a partir de 15 kg)</small>
+                        </p>
+                    </section>
+                </article>
+
+                <!-- PRODUCTO 2 DE PRUEBA: Cubeta de Huevos (30 Unidades) -->
+                <article class="card-producto" id="art-huevos" data-categoria="huevos">
+                    <header class="card-header">
+                        <span class="badge-3d">✨ Avícola 3D</span>
+                        <h3 class="nombre-producto">Cubeta de Huevos (30 Unidades)</h3>
+                    </header>
+
+                    <figure class="figura-producto-3d">
+                        <model-viewer 
+                            id="mv-huevos" 
+                            class="visor-3d"
+                            data-clave="cubeta_huevos"
+                            src="modelos/cubeta_huevos.glb" 
+                            alt="Modelo 3D interactivo Cubeta de Huevos" 
+                            auto-rotate 
+                            camera-controls 
+                            shadow-intensity="1.2" 
+                            exposure="1.0"
+                            ar>
+                        </model-viewer>
+                        <figcaption class="instruccion-3d">🖱️ Arrastra para girar en 3D | Rueda para zoom</figcaption>
+                    </figure>
+
+                    <p class="acciones-3d">
+                        <button type="button" class="btn-control-3d" onclick="centrarCamara('mv-huevos')">🔄 Centrar</button>
+                        <button type="button" class="btn-control-3d" onclick="toggleRotacion('mv-huevos', this)">⏸️ Pausar</button>
+                    </p>
+
+                    <p class="descripcion-producto">
+                        Cubeta de 30 huevos seleccionados de gallinas ponedoras de campo, grado A con máxima frescura y cáscara reforzada.
+                    </p>
+
+                    <section class="precios-producto">
+                        <p class="precio-unitario">
+                            <span class="etiqueta-precio">Precio unitario:</span>
+                            <strong class="valor-precio">$4.20</strong>
+                        </p>
+                        <p class="precio-mayor">
+                            <span class="etiqueta-precio">Precio al por mayor:</span>
+                            <strong class="valor-precio">$3.50</strong>
+                            <small class="nota-mayor">(a partir de 5 cubetas)</small>
+                        </p>
+                    </section>
+                </article>
+
+                <!-- PRODUCTO 3 DE PRUEBA: Alitas de Pollo Tiernas -->
+                <article class="card-producto" id="art-alitas" data-categoria="alitas">
+                    <header class="card-header">
+                        <span class="badge-3d">✨ Avícola 3D</span>
+                        <h3 class="nombre-producto">Alitas de Pollo Tiernas</h3>
+                    </header>
+
+                    <figure class="figura-producto-3d">
+                        <model-viewer 
+                            id="mv-alitas" 
+                            class="visor-3d"
+                            data-clave="alitas"
+                            src="modelos/alitas.glb" 
+                            alt="Modelo 3D interactivo Alitas de Pollo" 
+                            auto-rotate 
+                            camera-controls 
+                            shadow-intensity="1.2" 
+                            exposure="1.0"
+                            ar>
+                        </model-viewer>
+                        <figcaption class="instruccion-3d">🖱️ Arrastra para girar en 3D | Rueda para zoom</figcaption>
+                    </figure>
+
+                    <p class="acciones-3d">
+                        <button type="button" class="btn-control-3d" onclick="centrarCamara('mv-alitas')">🔄 Centrar</button>
+                        <button type="button" class="btn-control-3d" onclick="toggleRotacion('mv-alitas', this)">⏸️ Pausar</button>
+                    </p>
+
+                    <p class="descripcion-producto">
+                        Alitas tiernas seleccionadas y fraccionadas, perfectas para aperitivos, asados crujientes, eventos sociales y restaurantes.
+                    </p>
+
+                    <section class="precios-producto">
+                        <p class="precio-unitario">
+                            <span class="etiqueta-precio">Precio unitario:</span>
+                            <strong class="valor-precio">$3.90 / kg</strong>
+                        </p>
+                        <p class="precio-mayor">
+                            <span class="etiqueta-precio">Precio al por mayor:</span>
+                            <strong class="valor-precio">$3.20 / kg</strong>
+                            <small class="nota-mayor">(a partir de 15 kg)</small>
+                        </p>
+                    </section>
+                </article>
+
+            </div>
+        </main>
+
+    </div>
+
+    <!-- ========================================================
+         SECCIÓN SECUNDARIA: SERVICIOS AR
+         ======================================================== -->
+    <section class="seccion-secundaria oculto texto-centrado" id="seccion-servicios">
+        <h2>Servicio Interactivo de Realidad Aumentada</h2>
+        <p>Escanea el código QR desde tu dispositivo móvil para visualizar nuestro modelo 3D con tecnología MyWebAR.</p>
+
+        <div class="caja-qr-ar">
+            <img src="imagenes/https___mywebar.com_p_Project_0_jthqg80gm3-at-mywebar.com.png" alt="Código QR Realidad Aumentada" class="img-qr-ar">
+            <p class="etiqueta-qr-ar">✨ Experiencia AR MyWebAR</p>
+        </div>
+
+        <p class="enlace-volver-contenedor">
+            <a href="#inicio" class="enlace-volver" onclick="cambiarSeccion('inicio', event)">← Volver al Inicio</a>
+        </p>
+    </section>
+
+    <!-- ========================================================
+         SECCIÓN SECUNDARIA: CONTACTO Y FORMULARIO
+         ======================================================== -->
+    <section class="seccion-secundaria oculto" id="seccion-contacto">
+        <div class="bloque-encuentranos">
+            <h2>Encuéntranos</h2>
+            <p><strong>Ubicación:</strong> Sector Avenida Río Amazonas, Quito, Ecuador</p>
+            <p><strong>Atención:</strong> Lunes a sábado, de 09:00 a 18:00</p>
+
+            <div class="contenedor-mapa">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Av.+R%C3%ADo+Amazonas,+Quito,+Ecuador&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    title="Mapa en Sección Contacto" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <p>También puedes visitarnos a través de nuestras redes sociales oficiales.</p>
+        </div>
+
+        <form class="formulario-contacto" onsubmit="event.preventDefault(); alert('¡Gracias! Su consulta ha sido enviada con éxito.');">
+            <h2>Envíanos un mensaje</h2>
+
+            <div class="campo-grupo">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+            </div>
+
+            <div class="campo-grupo">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
+            </div>
+
+            <div class="campo-grupo">
+                <label for="mensaje">Mensaje o Cotización</label>
+                <textarea id="mensaje" name="mensaje" required placeholder="Indícanos los productos o cantidad que deseas cotizar..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-enviar">Enviar consulta</button>
+        </form>
+
+        <p class="enlace-volver-contenedor">
+            <a href="#inicio" class="enlace-volver" onclick="cambiarSeccion('inicio', event)">← Volver al Inicio</a>
+        </p>
+    </section>
+
+    <!-- ========================================================
+         REDES SOCIALES (ESTRUCTURA LIMPIA, CERO INLINE STYLES)
+         ======================================================== -->
+    <section class="caja-redes-sociales">
+        <h3 class="titulo-redes">Síguenos en nuestras redes oficiales</h3>
+        <div class="redes-sociales-iconos">
+            <a href="https://www.facebook.com/jhoel.rios.39?rdid=rw6mgQzDaRAmTdtg&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19L8kAMip9%2F#" target="_blank" title="Facebook">
+                <img src="imagenes/FB-f-Logo__blue_512.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/jhoel.riosv_a?mdxt=aTZ2OGVlMTR5YjFy" target="_blank" title="Instagram">
+                <img src="imagenes/INSTA (2).jpg" alt="Instagram">
+            </a>
+            <a href="https://www.tiktok.com/@jhoel.riosv_a?_r=1&_t=ZS-9Afdm2qNUqz" target="_blank" title="TikTok">
+                <img src="imagenes/TIKTOK.jpg" alt="TikTok">
+            </a>
+        </div>
+    </section>
+
+    <!-- ========================================================
+         FOOTER / PIE DE PÁGINA
+         Fondo: #1e293b | Color: #ffffff | Alineado al centro | Segoe UI
+         ======================================================== -->
+    <footer class="pie-pagina">
+        <p>&copy; 2026 Jhoel Rios - Avícola El Pollo Feliz | Todos los derechos reservados</p>
+        <p>E-Commerce con Arquitectura Semántica W3C/WHATWG y Capa de Presentación CSS3</p>
+    </footer>
+
+    <!-- ========================================================
+         SCRIPTS: THREE.JS PARA RENDERIZADO Y ANIMACIÓN DEL FBX
+         ======================================================== -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        window.fbxMascotaMixer = null;
+        window.fbxBannerMixer = null;
+        window.fbxMascotaCamera = null;
+        window.fbxMascotaControls = null;
+        window.fbxMascotaInitialPos = null;
+        window.fbxMascotaInitialTarget = null;
+        window.fbxAnimacionActiva = true;
+
+        // Decodifica la cadena base64 en un ArrayBuffer (garantiza funcionamiento offline en file:///)
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        // Encuadra la cámara con relación al tamaño real del objeto FBX
+        function ajustarEncuadre(object, camera, controls, factor = 1.35) {
+            const box = new THREE.Box3().setFromObject(object);
+            const size = box.getSize(new THREE.Vector3());
+            const center = box.getCenter(new THREE.Vector3());
+
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const fov = camera.fov * (Math.PI / 180);
+            let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * factor;
+
+            camera.position.set(center.x, center.y + (size.y * 0.1), center.z + cameraZ);
+            camera.lookAt(center);
+
+            if (controls) {
+                controls.target.copy(center);
+                controls.update();
+            }
+
+            return { center, cameraZ };
+        }
+
+        // Configuración de iluminación profesional para modelos 3D
+        function configurarLuces(scene) {
+            const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+            scene.add(ambientLight);
+
+            const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.8);
+            dirLight1.position.set(5, 12, 8);
+            scene.add(dirLight1);
+
+            const dirLight2 = new THREE.DirectionalLight(0xffd1b3, 0.9);
+            dirLight2.position.set(-6, 4, -6);
+            scene.add(dirLight2);
+        }
+
+        // Inicialización y renderizado de los dos visores FBX (Banner y Mascota Prueba)
+        function inicializarFBX() {
+            const loader = new FBXLoader();
+
+            function obtenerBufferOUrl(callback) {
+                if (window.SILLY_DANCING_BASE64) {
+                    try {
+                        const buf = base64ToArrayBuffer(window.SILLY_DANCING_BASE64);
+                        callback(buf, true);
+                        return;
+                    } catch (e) {
+                        console.warn('Error decodificando base64 del FBX:', e);
+                    }
+                }
+                callback('imagenes/Silly Dancing.fbx', false);
+            }
+
+            obtenerBufferOUrl((fuente, esBuffer) => {
+                // 1. Visor en el Banner Principal (al lado del logo) - Tamaño destacado
+                const canvasBanner = document.getElementById('canvas-banner-fbx');
+                if (canvasBanner) {
+                    const w = canvasBanner.clientWidth || 170;
+                    const h = canvasBanner.clientHeight || 170;
+                    const sceneBanner = new THREE.Scene();
+                    const cameraBanner = new THREE.PerspectiveCamera(40, w / h, 0.1, 2000);
+                    const rendererBanner = new THREE.WebGLRenderer({ canvas: canvasBanner, alpha: true, antialias: true });
+                    rendererBanner.setSize(w, h);
+                    rendererBanner.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+                    configurarLuces(sceneBanner);
+
+                    const setupBannerModel = (fbx) => {
+                        sceneBanner.add(fbx);
+                        if (fbx.animations && fbx.animations.length > 0) {
+                            window.fbxBannerMixer = new THREE.AnimationMixer(fbx);
+                            const action = window.fbxBannerMixer.clipAction(fbx.animations[0]);
+                            action.play();
+                        }
+                        // Encuadre más cercano y centrado para que el personaje se vea grande y nítido
+                        ajustarEncuadre(fbx, cameraBanner, null, 1.05);
+                    };
+
+                    if (esBuffer) {
+                        try {
+                            const fbxBanner = loader.parse(fuente.slice(0), '');
+                            setupBannerModel(fbxBanner);
+                        } catch (e) {
+                            console.error('Error parseando FBX para banner:', e);
+                        }
+                    } else {
+                        loader.load(fuente, setupBannerModel, undefined, (err) => console.error(err));
+                    }
+
+                    const clockBanner = new THREE.Clock();
+                    function animarBanner() {
+                        requestAnimationFrame(animarBanner);
+                        const delta = clockBanner.getDelta();
+                        if (window.fbxBannerMixer) {
+                            window.fbxBannerMixer.update(delta);
+                        }
+                        rendererBanner.render(sceneBanner, cameraBanner);
+                    }
+                    animarBanner();
+
+                    window.addEventListener('resize', () => {
+                        const nw = canvasBanner.clientWidth || 170;
+                        const nh = canvasBanner.clientHeight || 170;
+                        cameraBanner.aspect = nw / nh;
+                        cameraBanner.updateProjectionMatrix();
+                        rendererBanner.setSize(nw, nh);
+                    });
+                }
+
+                // 2. Visor de la Mascota Virtual en la Sección Prueba (en vez del Pollo Feliz)
+                const canvasMascota = document.getElementById('canvas-mascota-fbx');
+                if (canvasMascota) {
+                    const w = canvasMascota.clientWidth || 340;
+                    const h = canvasMascota.clientHeight || 270;
+                    const sceneMascota = new THREE.Scene();
+                    sceneMascota.background = new THREE.Color(0xfff7f7);
+
+                    const cameraMascota = new THREE.PerspectiveCamera(45, w / h, 0.1, 2000);
+                    window.fbxMascotaCamera = cameraMascota;
+
+                    const rendererMascota = new THREE.WebGLRenderer({ canvas: canvasMascota, antialias: true });
+                    rendererMascota.setSize(w, h);
+                    rendererMascota.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+                    const controls = new OrbitControls(cameraMascota, rendererMascota.domElement);
+                    controls.enableDamping = true;
+                    controls.dampingFactor = 0.05;
+                    window.fbxMascotaControls = controls;
+
+                    configurarLuces(sceneMascota);
+
+                    const setupMascotaModel = (fbx) => {
+                        sceneMascota.add(fbx);
+                        if (fbx.animations && fbx.animations.length > 0) {
+                            window.fbxMascotaMixer = new THREE.AnimationMixer(fbx);
+                            const action = window.fbxMascotaMixer.clipAction(fbx.animations[0]);
+                            action.play();
+                        }
+                        ajustarEncuadre(fbx, cameraMascota, controls, 1.35);
+                        window.fbxMascotaInitialPos = cameraMascota.position.clone();
+                        window.fbxMascotaInitialTarget = controls.target.clone();
+                    };
+
+                    if (esBuffer) {
+                        try {
+                            const fbxMascota = loader.parse(fuente.slice(0), '');
+                            setupMascotaModel(fbxMascota);
+                        } catch (e) {
+                            console.error('Error parseando FBX para mascota:', e);
+                        }
+                    } else {
+                        loader.load(fuente, setupMascotaModel, undefined, (err) => console.error(err));
+                    }
+
+                    const clockMascota = new THREE.Clock();
+                    function animarMascota() {
+                        requestAnimationFrame(animarMascota);
+                        const delta = clockMascota.getDelta();
+                        if (window.fbxMascotaMixer && window.fbxAnimacionActiva) {
+                            window.fbxMascotaMixer.update(delta);
+                        }
+                        controls.update();
+                        rendererMascota.render(sceneMascota, cameraMascota);
+                    }
+                    animarMascota();
+
+                    const redibujar = () => {
+                        const nw = canvasMascota.clientWidth || 340;
+                        const nh = canvasMascota.clientHeight || 270;
+                        cameraMascota.aspect = nw / nh;
+                        cameraMascota.updateProjectionMatrix();
+                        rendererMascota.setSize(nw, nh);
+                    };
+                    window.addEventListener('resize', redibujar);
+                    window.redibujarCanvasFBX = redibujar;
+                }
+            });
+        }
+
+        // Control de pausar / reanudar el baile del personaje FBX
+        window.toggleBaileFBX = function() {
+            const btn = document.getElementById('btn-toggle-baile');
+            if (window.fbxAnimacionActiva) {
+                window.fbxAnimacionActiva = false;
+                if (btn) btn.innerText = '▶️ Reanudar Baile';
+            } else {
+                window.fbxAnimacionActiva = true;
+                if (btn) btn.innerText = '⏸️ Pausar Baile';
+            }
+        };
+
+        // Control de centrar la cámara del personaje FBX
+        window.centrarMascotaFBX = function() {
+            if (window.fbxMascotaControls && window.fbxMascotaInitialPos && window.fbxMascotaInitialTarget) {
+                window.fbxMascotaCamera.position.copy(window.fbxMascotaInitialPos);
+                window.fbxMascotaControls.target.copy(window.fbxMascotaInitialTarget);
+                window.fbxMascotaControls.update();
+            }
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', inicializarFBX);
+        } else {
+            inicializarFBX();
+        }
+    </script>
+
+    <!-- ========================================================
+         SCRIPTS: GESTIÓN DE MODELOS GLB DE PRODUCTOS Y NAVEGACIÓN
+         ======================================================== -->
+    <script>
+        // Obtiene la fuente adecuada del modelo según el entorno (file:/// o servidor web)
+        function obtenerModelo(clave, archivoLocal, demoUrl) {
+            if (modoCatalogoActual === 'demo' && demoUrl) {
+                return demoUrl;
+            }
+            if (window.MODELOS_3D_DATA && window.MODELOS_3D_DATA[clave]) {
+                return window.MODELOS_3D_DATA[clave];
+            }
+            return 'modelos/' + archivoLocal;
+        }
+
+        let modoCatalogoActual = 'granja';
+
+        // Definición de catálogo con modelos GLB y datos para todos los visores de productos
+        const catalogoModelos = [
+            // Modelos de la sección Prueba (3 productos)
+            {
+                id: 'mv-pierna',
+                clave: 'muslos_pollo',
+                archivo: 'muslos_pollo.glb',
+                demoUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BarramundiFish/glTF-Binary/BarramundiFish.glb'
+            },
+            {
+                id: 'mv-huevos',
+                clave: 'cubeta_huevos',
+                archivo: 'cubeta_huevos.glb',
+                demoUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Avocado/glTF-Binary/Avocado.glb'
+            },
+            {
+                id: 'mv-alitas',
+                clave: 'alitas',
+                archivo: 'alitas.glb',
+                demoUrl: 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/gltf/Horse.glb'
+            },
+            // Modelos de la sección Productos (5 productos)
+            {
+                id: 'mv-prod-pollo',
+                clave: 'pollo_entero',
+                archivo: 'pollo_entero.glb',
+                demoUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Duck/glTF-Binary/Duck.glb'
+            },
+            {
+                id: 'mv-prod-huevos',
+                clave: 'cubeta_huevos',
+                archivo: 'cubeta_huevos.glb',
+                demoUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Avocado/glTF-Binary/Avocado.glb'
+            },
+            {
+                id: 'mv-prod-muslos',
+                clave: 'muslos_pollo',
+                archivo: 'muslos_pollo.glb',
+                demoUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BarramundiFish/glTF-Binary/BarramundiFish.glb'
+            },
+            {
+                id: 'mv-prod-pechuga',
+                clave: 'pechuga',
+                archivo: 'pechuga.glb',
+                demoUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoomBox/glTF-Binary/BoomBox.glb'
+            },
+            {
+                id: 'mv-prod-alitas',
+                clave: 'alitas',
+                archivo: 'alitas.glb',
+                demoUrl: 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/gltf/Horse.glb'
+            }
+        ];
+
+        // Alternar entre modelos propios de la avícola y demostrativos
+        function alternarModoCatalogo(modo) {
+            modoCatalogoActual = modo;
+            const botonesGranja = document.querySelectorAll('.btn-granja');
+            const botonesDemo = document.querySelectorAll('.btn-demo');
+
+            if (modo === 'granja') {
+                botonesGranja.forEach(b => b.classList.add('activo'));
+                botonesDemo.forEach(b => b.classList.remove('activo'));
+            } else {
+                botonesGranja.forEach(b => b.classList.remove('activo'));
+                botonesDemo.forEach(b => b.classList.add('activo'));
+            }
+
+            catalogoModelos.forEach(item => {
+                const viewer = document.getElementById(item.id);
+                if (viewer) {
+                    viewer.src = obtenerModelo(item.clave, item.archivo, item.demoUrl);
+                }
+            });
+        }
+
+        // Control interactivo: centrar cámara en model-viewer
+        function centrarCamara(id) {
+            const viewer = document.getElementById(id);
+            if (viewer) {
+                viewer.cameraOrbit = '0deg 75deg 105%';
+                viewer.resetTurntableRotation();
+            }
+        }
+
+        // Control interactivo: pausar o reanudar rotación automática
+        function toggleRotacion(id, btn) {
+            const viewer = document.getElementById(id);
+            if (viewer) {
+                if (viewer.hasAttribute('auto-rotate')) {
+                    viewer.removeAttribute('auto-rotate');
+                    if (btn) btn.innerText = '▶️ Girar';
+                } else {
+                    viewer.setAttribute('auto-rotate', '');
+                    if (btn) btn.innerText = '⏸️ Pausar';
+                }
+            }
+        }
+
+        // Tolerancia a fallos para model-viewer con fallback offline base64
+        function inicializarManejadores3D() {
+            document.querySelectorAll('model-viewer').forEach(viewer => {
+                viewer.addEventListener('error', () => {
+                    const clave = viewer.getAttribute('data-clave');
+                    if (clave && window.MODELOS_3D_DATA && window.MODELOS_3D_DATA[clave]) {
+                        console.info('Aplicando fallback integrado offline para:', clave);
+                        viewer.src = window.MODELOS_3D_DATA[clave];
+                    }
+                });
+            });
+        }
+
+        // Filtro de categorías dentro de un catálogo específico
+        function filtrarCategoria(categoria, botonElemento, contenedorId) {
+            if (botonElemento) {
+                const barra = botonElemento.parentElement;
+                if (barra) {
+                    barra.querySelectorAll('.btn-filtro-cat').forEach(b => b.classList.remove('activo'));
+                    botonElemento.classList.add('activo');
+                }
+            }
+            const contenedor = contenedorId ? document.getElementById(contenedorId) : document;
+            if (contenedor) {
+                const articulos = contenedor.querySelectorAll('article.card-producto');
+                articulos.forEach(art => {
+                    const catArticulo = art.getAttribute('data-categoria');
+                    if (categoria === 'todas' || catArticulo === categoria) {
+                        art.classList.remove('oculto-filtro');
+                    } else {
+                        art.classList.add('oculto-filtro');
+                    }
+                });
+            }
+        }
+
+        // Navegación modular orientada a componentes (CERO DESCARGAS, DESPLIEGUE DIRECTO)
+        function cambiarSeccion(seccion, event) {
+            if (event) {
+                event.preventDefault(); // Evita la recarga y la descarga no deseada de archivos
+            }
+
+            const seccionInicio = document.getElementById('seccion-inicio');
+            const seccionProductos = document.getElementById('seccion-productos');
+            const seccionPrueba = document.getElementById('seccion-prueba');
+            const seccionServicios = document.getElementById('seccion-servicios');
+            const seccionContacto = document.getElementById('seccion-contacto');
+
+            // Desactivar todos los botones de navegación
+            document.querySelectorAll('.nav-enlace').forEach(a => a.classList.remove('activo'));
+
+            // Ocultar todas las secciones
+            if (seccionInicio) seccionInicio.classList.add('oculto');
+            if (seccionProductos) seccionProductos.classList.add('oculto');
+            if (seccionPrueba) seccionPrueba.classList.add('oculto');
+            if (seccionServicios) seccionServicios.classList.add('oculto');
+            if (seccionContacto) seccionContacto.classList.add('oculto');
+
+            if (seccion === 'inicio') {
+                const btn = document.getElementById('btn-inicio');
+                if (btn) btn.classList.add('activo');
+                if (seccionInicio) seccionInicio.classList.remove('oculto');
+            } else if (seccion === 'productos') {
+                // Al pulsar "Productos", se despliega el catálogo con los 5 productos completos
+                const btn = document.getElementById('btn-productos');
+                if (btn) btn.classList.add('activo');
+                if (seccionProductos) seccionProductos.classList.remove('oculto');
+                filtrarCategoria('todas', null, 'seccion-productos');
+            } else if (seccion === 'servicios') {
+                const btn = document.getElementById('btn-servicios');
+                if (btn) btn.classList.add('activo');
+                if (seccionServicios) seccionServicios.classList.remove('oculto');
+            } else if (seccion === 'contacto') {
+                const btn = document.getElementById('btn-contacto');
+                if (btn) btn.classList.add('activo');
+                if (seccionContacto) seccionContacto.classList.remove('oculto');
+            } else if (seccion === 'prueba') {
+                // Al pulsar "Prueba", se despliega exactamente la vista con los 3 productos + mascota FBX arriba
+                const btn = document.getElementById('btn-prueba');
+                if (btn) btn.classList.add('activo');
+                if (seccionPrueba) seccionPrueba.classList.remove('oculto');
+                filtrarCategoria('todas', null, 'seccion-prueba');
+            }
+
+            // Redibujar visores para mantener proporciones perfectas
+            setTimeout(() => {
+                document.querySelectorAll('model-viewer').forEach(viewer => {
+                    if (typeof viewer.resize === 'function') {
+                        viewer.resize();
+                    }
+                });
+                if (typeof window.redibujarCanvasFBX === 'function') {
+                    window.redibujarCanvasFBX();
+                }
+            }, 80);
+        }
+
+        // Inicialización al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            inicializarManejadores3D();
+        });
+    </script>
+
+</body>
+
+</html>
